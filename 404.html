@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Loading...</title>
+    <script>
+        // GitHub PagesでSPAのルーティングを処理するためのスクリプト
+        // 404エラーが発生した際に、元のURLをセッションストレージに保存し、
+        // index.htmlにリダイレクトすることで、SPAのルーターに処理を引き継ぐ。
+        (function() {
+            // 1. 元のURLをセッションストレージに保存
+            // これにより、SPAのルーター（React Routerなど）がこの値を見て、
+            // 正しいパスにナビゲートすることが期待される。
+            sessionStorage.setItem('redirect', location.href);
+
+            // 2. index.htmlにリダイレクト
+            // GitHub Pagesのカスタム404ページは、常にリポジトリのルートで実行されるため、
+            // index.htmlへの相対パスは './index.html' または '/' で良い。
+            // ここでは、リポジトリのルート（index.html）にリダイレクトする。
+            // ユーザーのサイトURLが https://tnmanus3.github.io/ であるため、
+            // リポジトリ名は tnmanus3.github.io のルート、または tnmanus3 のサブディレクトリの可能性がある。
+            // ユーザーが提供したURLは https://tnmanus3.github.io/about などなので、
+            // カスタムドメインではないため、リポジトリ名は 'tnmanus3' とは限らないが、
+            // サイトのルートにリダイレクトするのが最も安全。
+            
+            // サイトのルートにリダイレクト
+            location.replace('/');
+        })();
+    </script>
+</head>
+<body>
+    <!-- ユーザーがリダイレクトされるまでの間に表示されるメッセージ -->
+    <p>ページを読み込んでいます...</p>
+</body>
+</html>
